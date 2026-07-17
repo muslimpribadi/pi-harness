@@ -77,27 +77,17 @@ docker run -it --rm \
 
 ---
 
-## Running the Agent
+## Running pi coding agent
 
-Once inside the container, launch the agent:
+Once inside the container, launch pi:
 
 ```bash
-# Start the documentation writer agent
+# Start your pi coding agent
 pi
 
 # View available options
 pi --help
 ```
-
-### Useful Commands Inside the Container
-
-| Task | Command |
-|------|---------|
-| Check GPU status | `rocm-smi --showinfo` |
-| List GPU details | `rocminfo` |
-| Find files fast | `fd <pattern>` |
-| Search text fast | `rg <pattern>` |
-| View system stats | `mpstat 1` or `iostat 1` |
 
 ---
 
