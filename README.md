@@ -10,7 +10,7 @@
 - [Why This Exists](#why-this-exists)
 - [What's Inside](#whats-inside)
 - [Quick Start](#quick-start)
-- [Running the Agent](#running-the-agent)
+- [Running pi Coding Agent](#running-pi-coding-agent)
 - [Volume Mounts](#volume-mounts)
 - [Acknowledgements](#acknowledgements)
 
