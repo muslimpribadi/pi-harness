@@ -7,6 +7,7 @@
 ## Table of Contents
 
 - [About](#about)
+- [Pull the Image](#pull-the-image)
 - [Why This Exists](#why-this-exists)
 - [What's Inside](#whats-inside)
 - [Quick Start](#quick-start)
@@ -18,13 +19,27 @@
 
 ## About
 
-`pi-harness` is a Docker/Podman container that prepares everything needed to run the [pi.dev documentation writer agent](https://pi.dev/docs/latest). It's built on **Fedora 43** and includes GPU tooling, browser automation, and system utilities — all pre-configured and ready to go.
+`pi-harness` is a Docker/Podman container that prepares everything needed to run the [pi.dev](https://pi.dev). It's built on **Fedora 43** and includes GPU tooling (AMD ROCm), browser automation (Playwright), and system utilities — all pre-configured and ready to go.
+
+---
+
+## Pull the Image
+
+Skip building locally — just pull the pre-built image:
+
+```bash
+# Podman
+podman pull ghcr.io/muslimpribadi/pi-harness:latest
+
+# Or Docker
+docker pull ghcr.io/muslimpribadi/pi-harness:latest
+```
 
 ---
 
 ## Why This Exists
 
-I use the [pi coding agent](https://pi.dev) as a harness for my **documentation writer agent**. The documentation I'm generating covers the server hardware itself — an **AMD Strix Halo** machine — so the container needs to closely replicate that host environment. That's why this image is based on Fedora 43 with ROCm libraries included.
+I use the [pi coding agent](https://github.com/earendil-works/pi) as a harness for my **documentation writer agent**. The documentation I'm generating covers the server hardware itself — an **AMD Strix Halo** machine — so the container needs to closely replicate that host environment. That's why this image is based on Fedora 43 with ROCm libraries included.
 
 I also added **Playwright with Headless Chromium** so the agent can browse and verify the documentation it writes, ensuring accuracy before it's considered complete.
 
@@ -106,6 +121,12 @@ These mounts are recommended to persist your work and configuration:
 
 - [M.Pribadi](https://github.com/muslimpribadi)
 - [LUNA bot](https://github.com/luna-bot-agent)
+
+## Release & Updates
+
+This container is synced with the [pi](https://github.com/earendil-works/pi) project. Every time pi releases a new version, the image is rebuilt and pushed to `ghcr.io`. Pulling `:latest` always gives you the newest pi agent harness.
+
+---
 
 ## Acknowledgements
 
