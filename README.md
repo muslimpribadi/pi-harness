@@ -1,6 +1,6 @@
 # pi-harness
 
-> A containerized environment for running the pi.dev documentation writer agent on AMD Strix Halo hardware.
+> A containerized environment for running the [pi coding agent](https://pi.dev) with playwright headless chrome ready on AMD Strix Halo hardware.
 
 ---
 
