@@ -2,7 +2,8 @@ name: Check for Pi Updates
 
 on:
   schedule:
-    - cron: '0 */18 * * *' # Checks every 6 hours
+    - cron: '30 0 * * *'
+      timezone: 'Asia/Jakarta'
   workflow_dispatch:
 
 permissions:
