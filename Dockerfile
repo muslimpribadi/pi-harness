@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:43
+FROM quay.io/fedora/fedora:43
 
 # Install system audit, networking, and native ROCm monitoring tools
 RUN dnf update -y && dnf install -y \
