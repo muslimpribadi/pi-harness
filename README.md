@@ -1,136 +1,150 @@
-# pi-harness
+# 🚀 pi-harness for AMD Strix Halo
 
-> A containerized environment for running the [pi coding agent](https://pi.dev) with playwright headless chrome ready on AMD Strix Halo hardware.
+A containerized environment for running the pi coding agent with playwright headless chrome, specifically optimized for AMD Strix Halo hardware.
 
----
+<p align="center">
+  <!-- GitHub Actions Build Status -->
+  <a href="https://github.com/muslimpribadi/pi-harness/actions">
+    <img src="https://github.com/muslimpribadi/pi-harness/actions/workflows/build-and-push.yml/badge.svg" alt="Build Status">
+  </a>
+  
+  <!-- GHCR Link -->
+  <a href="https://github.com/muslimpribadi/pi-harness/pkgs/container/pi-harness">
+    <img src="https://img.shields.io/badge/GHCR-Ready-blue?logo=docker" alt="GHCR Package">
+  </a>
 
-## Table of Contents
+  <!-- Upstream Docling Serve -->
+  <a href="https://github.com/earendil-works/pi">
+    <img src="https://img.shields.io/badge/Upstream-Pi-purple?logo=github" alt="Upstream Project">
+  </a>
 
-- [About](#about)
-- [Pull the Image](#pull-the-image)
-- [Why This Exists](#why-this-exists)
-- [What's Inside](#whats-inside)
-- [Quick Start](#quick-start)
-- [Running pi Coding Agent](#running-pi-coding-agent)
-- [Volume Mounts](#volume-mounts)
-- [Acknowledgements](#acknowledgements)
+  <!-- License -->
+  <a href="https://github.com/muslimpribadi/pi-harness/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
+  </a>
+</p>
 
----
+## 📖 Overview
 
-## About
+`pi-harness` is a fully prepared image designed to replicate a rootless Fedora 43 server environment containing necessary AMD ROCm libraries.
 
-`pi-harness` is a Docker/Podman container that prepares everything needed to run the [pi.dev](https://pi.dev). It's built on **Fedora 43** and includes GPU tooling (AMD ROCm), browser automation (Playwright), and system utilities — all pre-configured and ready to go.
+* It includes GPU tooling, browser automation (Playwright), and essential system utilities.
+* The setup enables the documentation writer agent to browse and verify the materials it authors, ensuring output accuracy before task completion.
 
----
+## ✨ Key Features
 
-## Pull the Image
+* **Core Agent:** `@earendil-works/pi-coding-agent` (pi.dev).
+* **Browser Automation:** Playwright + Headless Chromium.
+* **GPU Monitoring:** ROCm tools (`rocm-smi`, `rocminfo`).
+* **System Tools:** `jq`, `ripgrep`, `fd-find`, `sysstat`, `iproute2`, `procps-ng`.
+* **Runtime:** Python 3, Node.js / npm on Fedora 43 (x86_64).
+* **Automated CI/CD:** Syncs with the upstream `pi` project and automatically publishes to GHCR upon new releases.
 
-Skip building locally — just pull the pre-built image:
+## ⚡ Quick Start
+
+Note: You can use `docker` or `podman` interchangeably for the commands below.
+
+**1. Pull the container**
+
+Directory: `/mnt/pi-harness/`
 
 ```bash
-# Podman
 podman pull ghcr.io/muslimpribadi/pi-harness:latest
 
-# Or Docker
-docker pull ghcr.io/muslimpribadi/pi-harness:latest
 ```
 
----
+**2. Run the environment**
 
-## Why This Exists
-
-I use the [pi coding agent](https://github.com/earendil-works/pi) as a harness for my **documentation writer agent**. The documentation I'm generating covers the server hardware itself — an **AMD Strix Halo** machine — so the container needs to closely replicate that host environment. That's why this image is based on Fedora 43 with ROCm libraries included.
-
-I also added **Playwright with Headless Chromium** so the agent can browse and verify the documentation it writes, ensuring accuracy before it's considered complete.
-
-The container is designed for **Podman** (the native container runtime on Fedora), but runs perfectly fine in Docker too.
-
----
-
-## What's Inside
-
-| Category | Packages |
-|----------|----------|
-| **Core Agent** | `@earendil-works/pi-coding-agent` (pi.dev) |
-| **Browser Automation** | Playwright + Headless Chromium |
-| **GPU Monitoring** | ROCm tools (`rocm-smi`, `rocminfo`) |
-| **System Tools** | `jq`, `ripgrep`, `fd-find`, `sysstat`, `iproute2`, `procps-ng` |
-| **Runtime** | Python 3, Node.js / npm |
-| **Base OS** | Fedora 43 (x86_64) |
-
----
-
-## Quick Start
-
-### Build the Image
+Directory: `/mnt/pi-harness/`
 
 ```bash
-# Podman (recommended on Fedora)
-podman build -t pi-harness .
-
-# Or Docker
-docker build -t pi-harness .
-```
-
-### Run the Container
-
-```bash
-# Podman
 podman run -it --rm \
   -v /mnt/pi-harness/workspace:/workspace \
   -v /mnt/pi-harness/pi:/root/.pi \
   --name pi-agent \
-  pi-harness:latest
+  ghcr.io/muslimpribadi/pi-harness:latest
 
-# Or Docker
-docker run -it --rm \
-  -v /mnt/pi-harness/workspace:/workspace \
-  -v /mnt/pi-harness/pi:/root/.pi \
-  --name pi-agent \
-  pi-harness:latest
 ```
 
----
+> [!NOTE]
+> <details>
+>   <summary>Optional 1 - GPU Passthrough Requirements</summary>
+>   Use this if you want the agent to access GPU from the container
+>
+>   ```bash
+>    --device /dev/kfd \
+>    --device /dev/dri \
+>    --security-opt label=disable \
+>   ```
+>
+> </details>
+>
+> <details>
+>   <summary>Optional 2 - Architecture-Specific Variables</summary>
+>   Use this for strix halo `gfx1151` specific ROCm environment overrides
+>
+>   ```bash
+>   -e HSA_OVERRIDE_GFX_VERSION=11.5.1 \
+>   -e ROCR_VISIBLE_DEVICES=all \
+>   ```
+>
+> </details>
+> 
+> <details>
+>   <summary>Complete command:</summary>
+>   ```bash
+>   podman run -it --rm \
+>   --device /dev/kfd \
+>   --device /dev/dri \
+>   --security-opt label=disable \
+>   -e HSA_OVERRIDE_GFX_VERSION=11.5.1 \
+>   -e ROCR_VISIBLE_DEVICES=all \
+>   -v /mnt/pi-harness/workspace:/workspace:Z \
+>   -v /mnt/pi-harness/pi:/root/.pi:Z \
+>   --name pi-agent \
+>   ghcr.io/muslimpribadi/pi-harness:latest
+> ```
+>
+> </details>
 
-## Running pi coding agent
+**3. Launch the agent**
 
-Once inside the container, launch pi:
+Execute the following from inside the running container to start the agent:
 
 ```bash
-# Start your pi coding agent
 pi
 
 # View available options
 pi --help
+
 ```
 
----
+## 🛠️ Build Locally
 
-## Volume Mounts
+To build the image locally from source, execute the following:
 
-These mounts are recommended to persist your work and configuration:
+Directory: `/mnt/pi-harness/src/`
+
+```bash
+podman build -t pi-harness .
+
+```
+
+## ⚙️ Configuration
+
+### Volume Mounts
+
+The following mount points are recommended to persist your workspaces and agent configurations safely outside the container:
 
 | Host Path | Container Path | Purpose |
-|-----------|----------------|---------|
+| --- | --- | --- |
 | `/mnt/pi-harness/workspace` | `/workspace` | Your working directory for projects and generated docs |
 | `/mnt/pi-harness/pi` | `/root/.pi` | Pi agent's global configuration and state |
 
----
+## 🙌 Acknowledgements
 
-## Author
-
-- [M.Pribadi](https://github.com/muslimpribadi)
-- [LUNA bot](https://github.com/luna-bot-agent)
-
-## Release & Updates
-
-This container is synced with the [pi](https://github.com/earendil-works/pi) project. Every time pi releases a new version, the image is rebuilt and pushed to `ghcr.io`. Pulling `:latest` always gives you the newest pi agent harness.
-
----
-
-## Acknowledgements
-
-This project was assisted by **Qwen3.6 35B A3B** in its development and documentation.
+* **Author:** [M.Pribadi](https://github.com/muslimpribadi) and [LUNA bot](https://github.com/luna-bot-agent).
+* This project was assisted by **Qwen3.6 35B A3B** in its development and documentation.
 
 ```bibtex
 @misc{qwen36_35b_a3b,
@@ -140,10 +154,9 @@ This project was assisted by **Qwen3.6 35B A3B** in its development and document
     month = {April},
     year = {2026}
 }
+
 ```
 
----
+## 📜 License
 
-## License
-
-MIT License — see [LICENSE](LICENSE) for details.
+MIT License — see [LICENSE](https://www.google.com/search?q=LICENSE) for details.
