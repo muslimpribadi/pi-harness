@@ -56,7 +56,7 @@ jobs:
 
       - name: Log in to GHCR
         if: steps.check_ghcr.outputs.build_needed == 'true'
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -65,7 +65,7 @@ jobs:
       - name: Extract metadata and Dual-Tag
         if: steps.check_ghcr.outputs.build_needed == 'true'
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
@@ -74,7 +74,7 @@ jobs:
 
       - name: Build and push Docker image
         if: steps.check_ghcr.outputs.build_needed == 'true'
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
