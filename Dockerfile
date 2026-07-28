@@ -1,5 +1,11 @@
 FROM quay.io/fedora/fedora:43
 
+# OCI Metadata Labels
+LABEL org.opencontainers.image.title="pi-harness" \
+      org.opencontainers.image.description="pi coding agent container with playwright headless chrome, specifically optimized for AMD Strix Halo hardware." \
+      org.opencontainers.image.source="https://github.com/muslimpribadi/pi-harness" \
+      org.opencontainers.image.licenses="MIT"
+
 # Install system audit, networking, and native ROCm monitoring tools
 RUN dnf update -y && dnf install -y \
     bash ca-certificates fd-find ripgrep procps-ng \
