@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora:43
+FROM quay.io/fedora/fedora-minimal:43
 
 # OCI Metadata Labels
 LABEL org.opencontainers.image.title="pi-harness" \
