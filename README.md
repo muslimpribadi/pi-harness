@@ -2,27 +2,26 @@
 
 A containerized environment for running the pi coding agent with playwright headless chrome, specifically optimized for AMD Strix Halo hardware.
 
-<p align="center">
-  <!-- GitHub Actions Build Status -->
-  <a href="https://github.com/muslimpribadi/pi-harness/actions">
-    <img src="https://github.com/muslimpribadi/pi-harness/actions/workflows/build-and-push.yml/badge.svg" alt="Build Status">
-  </a>
-  
-  <!-- GHCR Link -->
-  <a href="https://github.com/muslimpribadi/pi-harness/pkgs/container/pi-harness">
-    <img src="https://img.shields.io/badge/GHCR-Ready-blue?logo=docker" alt="GHCR Package">
-  </a>
+<div align="center">
 
-  <!-- Upstream Docling Serve -->
-  <a href="https://github.com/earendil-works/pi">
-    <img src="https://img.shields.io/badge/Upstream-Pi-purple?logo=github" alt="Upstream Project">
-  </a>
+[![][github-action-shield]][github-action-link]
+[![][github-ghcr-shield]][github-ghcr-link]
+[![][github-upstream-shield]][github-upstream-link]
+[![][github-license-shield]][github-license-link]
+<br>
+[![][github-ghcr-downloads-shield]][github-ghcr-link]
 
-  <!-- License -->
-  <a href="https://github.com/muslimpribadi/pi-harness/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
-  </a>
-</p>
+[github-action-shield]: https://github.com/muslimpribadi/pi-harness/actions/workflows/build-and-push.yml/badge.svg
+[github-ghcr-shield]: https://img.shields.io/badge/GHCR-Ready-blue?logo=docker
+[github-upstream-shield]: https://img.shields.io/badge/Upstream-Pi-purple?logo=github
+[github-license-shield]: https://img.shields.io/badge/License-MIT-green.svg
+[github-ghcr-downloads-shield]: https://ghcr-badge.elias.eu.org/shield/muslimpribadi/pi-harness
+[github-upstream-link]: https://github.com/earendil-works/pi
+[github-license-link]: https://github.com/muslimpribadi/pi-harness/blob/main/LICENSE
+[github-action-link]: https://github.com/muslimpribadi/pi-harness/actions
+[github-ghcr-link]: https://github.com/muslimpribadi/pi-harness/pkgs/container/pi-harness
+
+</div>
 
 ## 📖 Overview
 
