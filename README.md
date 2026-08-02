@@ -91,6 +91,7 @@ podman run -it --rm \
 > 
 > <details>
 >   <summary>Complete command:</summary>
+>
 >   ```bash
 >   podman run -it --rm \
 >   --device /dev/kfd \
@@ -102,7 +103,7 @@ podman run -it --rm \
 >   -v /mnt/pi-harness/pi:/root/.pi:Z \
 >   --name pi-agent \
 >   ghcr.io/muslimpribadi/pi-harness:latest
-> ```
+>   ```
 >
 > </details>
 
