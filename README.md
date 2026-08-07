@@ -5,9 +5,10 @@ A containerized environment for running the pi coding agent with playwright head
 <div align="center">
 
 [![][github-action-shield]][github-action-link]
-[![][github-ghcr-shield]][github-ghcr-link]
 [![][github-upstream-shield]][github-upstream-link]
 [![][github-license-shield]][github-license-link]
+<br>
+[![][github-ghcr-shield]][github-ghcr-link] [![][github-ghcr-tag-shield]][github-ghcr-link]
 <br>
 [![][github-ghcr-downloads-shield]][github-ghcr-link]
 
@@ -16,6 +17,7 @@ A containerized environment for running the pi coding agent with playwright head
 [github-upstream-shield]: https://img.shields.io/badge/Upstream-Pi-purple?logo=github
 [github-license-shield]: https://img.shields.io/badge/License-MIT-green.svg
 [github-ghcr-downloads-shield]: https://ghcr-badge.elias.eu.org/shield/muslimpribadi/pi-harness
+[github-ghcr-tag-shield]: https://ghcr-badge.egpl.dev/muslimpribadi/pi-harness/latest_tag?trim=major&label=latest
 [github-upstream-link]: https://github.com/earendil-works/pi
 [github-license-link]: https://github.com/muslimpribadi/pi-harness/blob/main/LICENSE
 [github-action-link]: https://github.com/muslimpribadi/pi-harness/actions
